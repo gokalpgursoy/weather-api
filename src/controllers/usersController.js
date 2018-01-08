@@ -12,6 +12,17 @@ module.exports = {
       next(error);
     }
   },
+  async getUsersInfo(req, res, next) {
+    try {
+      const data = await usersService.getUsersInfo();
+      if (!data.success) {
+        next(data.error);
+      }
+      res.send(data.users);
+    } catch (error) {
+      next(error);
+    }
+  },
   async post(req, res, next) {
     try {
       const data = await usersService.addUser(req.body);

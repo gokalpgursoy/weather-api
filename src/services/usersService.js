@@ -36,6 +36,26 @@ module.exports = {
       };
     }
   },
+  async getUsersInfo() {
+    try {
+      const users = await usersModel.findAll({
+        where: {
+          isDeleted: 0,
+        },
+        attributes: ['id', 'username', 'isAdmin'],
+      });
+      console.log(users);
+      return {
+        success: true,
+        users,
+      };
+    } catch (error) {
+      return {
+        success: false,
+        error,
+      };
+    }
+  },
   async addUser(data) {
     try {
       if (!data.username || !data.password || !data.isAdmin) {
