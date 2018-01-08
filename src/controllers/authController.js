@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const config = require('../config');
+// const config = require('../config');
 const usersService = require('../services/usersService');
 
 module.exports = {
@@ -16,7 +16,7 @@ module.exports = {
         id: user.id,
       };
       const token = await jwt.sign(payload, 'secretprivatekey', {
-        expiresIn: parseInt(config.authentication.expiresIn),
+        expiresIn: 1440000,
       });
 
       if (!token) {
@@ -28,7 +28,7 @@ module.exports = {
         res.status(200).send({
           success: true,
           access_token: token,
-          expiresIn: config.authentication.expiresIn,
+          expiresIn: 1440000,
           isAdmin: user.isAdmin,
           id: user.id,
         });

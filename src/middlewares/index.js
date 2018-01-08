@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const config = require('../config');
+// const config = require('../config');
 const usersModel = require('../models').Users;
 
 module.exports = {
@@ -14,32 +14,28 @@ module.exports = {
         token = req.headers.authorization.split(' ')[1];
       }
       if (token) {
-        jwt.verify(
-          token,
-          'secretprivatekey',
-          async (err, decoded) => {
-            if (err) {
-              return res.status(401).send({
-                success: false,
-                message: 'Failed to authenticate token.',
-              });
-            }
-            const usr = await usersModel.find({
-              where: {
-                id: decoded.id,
-                isDeleted: 0,
-              },
+        jwt.verify(token, 'secretprivatekey', async (err, decoded) => {
+          if (err) {
+            return res.status(401).send({
+              success: false,
+              message: 'Failed to authenticate token.',
             });
-            if (!usr) {
-              return res.status(401).send({
-                success: false,
-                message: 'Failed to authenticate token.',
-              });
-            }
-            req.decoded = decoded;
-            next();
-          },
-        );
+          }
+          const usr = await usersModel.find({
+            where: {
+              id: decoded.id,
+              isDeleted: 0,
+            },
+          });
+          if (!usr) {
+            return res.status(401).send({
+              success: false,
+              message: 'Failed to authenticate token.',
+            });
+          }
+          req.decoded = decoded;
+          next();
+        });
       } else {
         return res.status(403).send({
           success: false,
