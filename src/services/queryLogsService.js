@@ -1,15 +1,21 @@
-const queryLogsModel = require('../models').QueryLogs;
+const db = require('../models');
 
 module.exports = {
   async getByUserId(id) {
     try {
-      const logs = await queryLogsModel.findAll({
-        where: {
-          userId: id,
-          isDeleted: 0,
+      const logs = await db.sequelize.query(
+        `select ql.id, u.username as username, l.title as locationTitle, ql.ipAddress, ql.response, ql.time, ql.isSuccess , ql.isDeleted
+      from querylogs as ql 
+      join users as u
+      on ql.userId = u.id
+      join locations as l
+      on ql.locationId = l.id
+      where ql.isDeleted = 0 and ql.userId=${id}
+      order by ql.createdAt desc`,
+        {
+          type: db.sequelize.QueryTypes.SELECT,
         },
-        order: [['updatedAt', 'DESC']],
-      });
+      );
       return {
         success: true,
         logs,
