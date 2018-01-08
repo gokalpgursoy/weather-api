@@ -16,7 +16,7 @@ module.exports = {
       if (token) {
         jwt.verify(
           token,
-          config.authentication.jwtSecret,
+          'secretprivatekey',
           async (err, decoded) => {
             if (err) {
               return res.status(401).send({

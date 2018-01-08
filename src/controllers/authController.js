@@ -15,7 +15,7 @@ module.exports = {
       const payload = {
         id: user.id,
       };
-      const token = await jwt.sign(payload, config.authentication.jwtSecret, {
+      const token = await jwt.sign(payload, 'secretprivatekey', {
         expiresIn: parseInt(config.authentication.expiresIn),
       });
 
