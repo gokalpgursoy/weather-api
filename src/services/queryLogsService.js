@@ -1,4 +1,6 @@
 const db = require('../models');
+const queryLogsModel = require('../models').QueryLogs;
+
 
 module.exports = {
   async getByUserId(id) {
