@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/app.js",    
+    "start": "node src/app.js",
     "dev": "nodemon src/app.js --exec 'npm run lint && node'",
     "lint": "./node_modules/.bin/eslint **/*.js"
   },
@@ -20,23 +20,23 @@
   },
   "homepage": "https://github.com/gokalpgursoy/weather-api#readme",
   "dependencies": {
-    "body-parser": "^1.18.2",
+    "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "dotenv": "^4.0.0",
-    "express": "^4.16.2",
+    "express": "^4.16.3",
     "fs": "0.0.1-security",
-    "helmet": "^3.9.0",
-    "jsonwebtoken": "^8.1.0",
-    "lodash": "^4.17.4",
-    "morgan": "^1.9.0",
-    "mysql2": "^1.5.1",
-    "nodemon": "^1.14.8",
+    "helmet": "^3.14.0",
+    "jsonwebtoken": "^8.3.0",
+    "lodash": "^4.17.11",
+    "morgan": "^1.9.1",
+    "mysql2": "^1.6.1",
+    "nodemon": "^1.18.4",
     "path": "^0.12.7",
-    "sequelize": "^4.29.0"
+    "sequelize": "^4.39.0"
   },
   "devDependencies": {
-    "eslint": "^4.14.0",
+    "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.8.0"
+    "eslint-plugin-import": "^2.14.0"
   }
 }
